@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+  </head>
+  <body>
+    <style>
+      .bg-body {
+        margin: 2rem;
+        height: 300px;
+        width: 350px;
+        border: 2px solid black;
+        transition: 300ms;
+        padding: 3px;
+      }
+    </style>
+    <button id="bg-btn">Change Background</button>
+
+    <h3>
+      Click The enter key to change the background or click the button above!
+    </h3>
+    <div class="bg-body">
+      click me to copy by background
+    </div>
+    <script>
+      // import colors from "./data.js";
+      const colors = [
+        "FF6633",
+        "FFB399",
+        "FF33FF",
+        "FFFF99",
+        "00B3E6",
+        "E6B333",
+        "3366E6",
+        "999966",
+        "99FF99",
+        "B34D4D",
+        "80B300",
+        "809900",
+        "E6B3B3",
+        "6680B3",
+        "66991A",
+        "FF99E6",
+        "CCFF1A",
+        "FF1A66",
+        "E6331A",
+        "33FFCC",
+        "66994D",
+        "B366CC",
+        "4D8000",
+        "B33300",
+        "CC80CC",
+        "66664D",
+        "991AFF",
+        "E666FF",
+        "4DB3FF",
+        "1AB399",
+        "E666B3",
+        "33991A",
+        "CC9999",
+        "B3B31A",
+        "00E680",
+        "4D8066",
+        "809980",
+        "E6FF80",
+        "1AFF33",
+        "999933",
+        "FF3380",
+        "CCCC00",
+        "66E64D",
+        "4D80CC",
+        "9900B3",
+        "E64D66",
+        "4DB380",
+        "FF4D4D",
+        "99E6E6",
+        "6666FF",
+        "FF99CC",
+        "CCFF00",
+        "FFCC99",
+        "99CCFF",
+        "FF6666",
+        "CC66FF",
+        "66CCCC",
+        "FF9933",
+        "FFCCCC",
+        "99CC00",
+        "FF99CC",
+        "CC99FF",
+        "66CC66",
+        "FFCC00",
+        "FF99FF",
+        "CCFF99",
+        "99CCFF",
+        "CC99CC",
+        "FFCC99",
+        "3366CC",
+        "33CCCC",
+        "99CC99",
+        "FF6666",
+        "FFCC66",
+        "FFFF99",
+        "CC99FF",
+        "CCFFCC",
+        "99CC99",
+        "FF9999",
+        "CC99CC",
+        "FFCCFF",
+        "66CCCC",
+        "FF6666",
+        "FF9933",
+        "99CCFF",
+        "FF99FF",
+        "CC99FF",
+        "99CCFF",
+        "FFCC99",
+        "CCFFCC",
+        "CC99CC",
+        "FF6666",
+        "FFCC66",
+        "FFFF99",
+        "99CCFF",
+        "CC99FF",
+        "CCFFCC",
+        "99CC99",
+        "FF9999",
+        "CC99CC",
+        "FFCCFF",
+        "66CCCC",
+        "FF6666",
+        "FF9933",
+        "99CCFF"
+      ];
+      const bg_body = document.querySelector(".bg-body");
+      const bg_btn = document.getElementById("bg-btn");
+
+      function get_random_color(arr) {
+        let random_deg = Math.floor(Math.random() * 360);
+        let random_1 = arr[Math.floor(Math.random() * arr.length)];
+        let random_2 = arr[Math.floor(Math.random() * arr.length)];
+        let gradient = `linear-gradient(${random_deg}deg, #${random_1}, #${random_2})`;
+        bg_body.style.border = "none";
+        bg_body.style.backgroundImage = gradient;
+        bg_body.textContent = gradient;
+      }
+
+      function copy_clipboard() {
+        let color = navigator.clipboard.writeText(bg_body.style.background);
+        bg_body.textContent = color;
+      }
+      bg_body.addEventListener("click", () => copy_clipboard);
+      window.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+          get_random_color(colors);
+        }
+      });
+      bg_btn.addEventListener("click", () => get_random_color(colors));
+    </script>
+  </body>
+</html>
